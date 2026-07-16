@@ -236,17 +236,13 @@ img {
 }
 
 .site-header-home {
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;
   border-bottom-color: transparent;
   background: transparent;
   backdrop-filter: none;
-}
-
-.site-header-home .brand img {
-  filter: brightness(0) invert(1);
 }
 
 .site-header-home .desktop-nav {
@@ -795,7 +791,7 @@ img {
   position: relative;
   overflow: hidden;
   border-radius: 8px;
-  background: var(--light);
+  background: white;
 }
 
 .work-model-image {
@@ -809,7 +805,7 @@ img {
 
 .work-model-image img,
 .wide-inline-image img {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .steps {
@@ -1023,7 +1019,6 @@ img {
 }
 
 .footer-logo {
-  filter: brightness(0) invert(1);
   margin-bottom: 0.75rem;
 }
 

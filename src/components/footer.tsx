@@ -21,7 +21,7 @@ export function Footer({ locale }: { locale: Locale }) {
     <footer className="footer">
       <div className="container footer-grid">
         <div>
-          <Image className="footer-logo" src={siteConfig.logo} alt="ACERTECH" width={170} height={43} />
+          <Image className="footer-logo" src={siteConfig.logoWhite} alt="ACERTECH" width={170} height={43} />
           <p>
             {tr
               ? "Acertech, metal işleme makineleri, teknik servis, proje ve mühendislik çözümleri sunar."
@@ -30,8 +30,7 @@ export function Footer({ locale }: { locale: Locale }) {
           <strong>{tr ? "2005'ten beri" : "Since 2005"}</strong>
         </div>
 
-        <div>
-          <h2>{tr ? "Sayfalar" : "Pages"}</h2>
+        <div className="footer-link-list">
           {footerLinks.map(([key, label]) => (
             <Link key={key} href={pathFor(locale, key)}>
               {label[locale]}
@@ -39,8 +38,7 @@ export function Footer({ locale }: { locale: Locale }) {
           ))}
         </div>
 
-        <div>
-          <h2>{tr ? "Makine Kategorileri" : "Machine Categories"}</h2>
+        <div className="footer-link-list">
           {machineCategories[locale].slice(0, 6).map((item) => (
             <Link key={item} href={pathFor(locale, "machines")}>
               {item}

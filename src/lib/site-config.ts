@@ -14,7 +14,9 @@ export const siteConfig = {
   gaId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-Q7HNFVWEPK",
   sahibindenUrl: process.env.NEXT_PUBLIC_SAHIBINDEN_URL || "",
   googleVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
-  logo: "/brand/acertech-logo.png",
+  logo: "/brand/acertech-logo-black.svg",
+  logoBlack: "/brand/acertech-logo-black.svg",
+  logoWhite: "/brand/acertech-logo-white.svg",
   ogImage: "/opengraph-image",
   hours: {
     tr: "Pazartesi-Cumartesi 08.00-18.00, Pazar Kapalı",

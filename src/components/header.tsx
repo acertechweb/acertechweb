@@ -143,6 +143,7 @@ export function Header({ locale, pageKey }: { locale: Locale; pageKey: PageKey }
   const t = labels[locale];
   const otherLocale = locale === "tr" ? "en" : "tr";
   const isHome = pageKey === "home";
+  const logoSrc = isHome ? siteConfig.logoWhite : siteConfig.logoBlack;
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -161,7 +162,7 @@ export function Header({ locale, pageKey }: { locale: Locale; pageKey: PageKey }
       <header className={isHome ? "site-header site-header-home" : "site-header"}>
         <div className="container header-inner">
           <Link className="brand" href={pathFor(locale, "home")} aria-label="ACERTECH">
-            <Image src={siteConfig.logo} alt="ACERTECH" width={190} height={48} priority />
+            <Image src={logoSrc} alt="ACERTECH" width={190} height={48} priority />
           </Link>
 
           <nav className="desktop-nav" aria-label={locale === "tr" ? "Ana menü" : "Main menu"}>
@@ -201,7 +202,7 @@ export function Header({ locale, pageKey }: { locale: Locale; pageKey: PageKey }
       {open ? (
         <div className="mobile-panel" role="dialog" aria-modal="true" aria-label={t.menu}>
           <div className="mobile-panel-head">
-            <Image src={siteConfig.logo} alt="ACERTECH" width={170} height={42} />
+            <Image src={siteConfig.logoBlack} alt="ACERTECH" width={170} height={42} />
             <button type="button" className="btn btn-ghost" onClick={() => setOpen(false)}>
               {t.close}
             </button>
