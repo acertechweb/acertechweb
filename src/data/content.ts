@@ -1,218 +1,234 @@
 import type { Locale } from "@/lib/site-config";
 import type { PageKey } from "@/i18n/routes";
 
+export const machineItems = [
+  { tr: "CNC Lazer Kesim", en: "CNC Laser Cutting", image: "/images/machines/cnc-lazer-kesim.png" },
+  { tr: "Hidrolik Pres", en: "Hydraulic Press", image: "/images/machines/hidrolik-pres.png" },
+  { tr: "Abkant Pres", en: "Press Brake", image: "/images/machines/abkant-pres.png" },
+  { tr: "Profil ve Boru Bükme", en: "Profile and Pipe Bending", image: "/images/machines/profil-boru-bukme.png" },
+  { tr: "Giyotin Makas", en: "Guillotine Shear", image: "/images/machines/giyotin-makas.png" },
+  { tr: "Kaynak Makineleri", en: "Welding Machines", image: "/images/machines/kaynak-makineleri.png" },
+  { tr: "CNC Torna", en: "CNC Lathe", image: "/images/machines/cnc-torna.png" },
+  { tr: "Kompresör", en: "Compressor", image: "/images/machines/kompresor.png" },
+  { tr: "CNC İşleme Merkezi", en: "CNC Machining Center", image: "/images/machines/cnc-isleme-merkezi.png" },
+  { tr: "Sac İşleme Makineleri", en: "Sheet Metal Machines", image: "/images/machines/sac-isleme-makineleri.png" },
+  { tr: "Plazma Kesim", en: "Plasma Cutting", image: "/images/machines/plazma-kesim.png" },
+  { tr: "Talaşlı İmalat Makineleri", en: "Machining Equipment", image: "/images/machines/talasli-imalat.png" },
+  { tr: "Şerit Testere", en: "Band Saw", image: "/images/machines/serit-testere.png" },
+  { tr: "Diğer Sanayi Makineleri", en: "Other Industrial Machines", image: "/images/machines/diger-sanayi-makineleri.png" }
+] as const;
+
 export const machineCategories = {
-  tr: [
-    "Fiber lazer kesim makineleri",
-    "CNC abkant presler",
-    "CNC giyotin makaslar",
-    "Silindir bükme makineleri",
-    "Roll form makineleri",
-    "Çapak alma makineleri",
-    "Azot jeneratörleri",
-    "Yüksek basınçlı kompresörler",
-    "Gıda dolum makineleri",
-    "Üretim hattı kurulumları"
-  ],
-  en: [
-    "Fiber laser cutting machines",
-    "CNC press brakes",
-    "CNC guillotine shears",
-    "Plate rolling machines",
-    "Roll forming machines",
-    "Deburring machines",
-    "Nitrogen generators",
-    "High-pressure compressors",
-    "Food filling machines",
-    "Production line installations"
-  ]
+  tr: machineItems.map((item) => item.tr),
+  en: machineItems.map((item) => item.en)
 } satisfies Record<Locale, string[]>;
 
 export const industries = {
   tr: [
-    "Metal işleme sanayisi",
-    "Sac işleme sanayisi",
-    "Makine imalatçıları",
-    "Gıda üretim tesisleri",
-    "Gıda dolum tesisleri",
-    "Silo üreticileri",
-    "Depolama sistemleri",
-    "Taşıma sistemleri",
-    "İzolasyon üreticileri",
-    "Sandviç panel üreticileri",
-    "Endüstriyel üretim tesisleri"
+    "Metal işleme ve sac şekillendirme",
+    "Çelik konstrüksiyon ve yapı sistemleri",
+    "Makine imalatı",
+    "Otomotiv ve yan sanayi",
+    "Tarım makineleri",
+    "Metal mobilya ve dekorasyon",
+    "Enerji, altyapı ve pano üretimi",
+    "Gıda ve paslanmaz ekipman",
+    "Savunma ve hassas üretim"
   ],
   en: [
-    "Metalworking industry",
-    "Sheet metal processing",
-    "Machine manufacturers",
-    "Food production plants",
-    "Food filling facilities",
-    "Silo manufacturers",
-    "Storage systems",
-    "Conveying systems",
-    "Insulation manufacturers",
-    "Sandwich panel manufacturers",
-    "Industrial production plants"
+    "Metalworking and sheet forming",
+    "Steel construction and building systems",
+    "Machine manufacturing",
+    "Automotive and supplier industry",
+    "Agricultural machinery",
+    "Metal furniture and decoration",
+    "Energy, infrastructure and panel production",
+    "Food and stainless equipment",
+    "Defense and precision manufacturing"
   ]
 } satisfies Record<Locale, string[]>;
 
 export const services = {
   tr: [
     {
-      title: "İkinci El Makine Çözümleri",
-      text: "Makine alım ve satımı, ekspertiz, değerleme, takas, revizyon, taşıma, kurulum ve devreye alma hizmetleri."
+      title: "Kurulum ve Devreye Alma",
+      text: "Yeni veya ikinci el makinelerin yerleşimi, bağlantı kontrolleri, ilk çalıştırma testleri ve üretime hazırlık süreci.",
+      image: "/images/service/service-cover.png"
     },
     {
-      title: "Sıfır Makine ve Üretim Hatları",
-      text: "İhtiyaca uygun makine seçimi, tedarik, üretim hattı planlaması, kurulum, devreye alma ve operatör eğitimi."
+      title: "Arıza Tespiti ve Periyodik Bakım",
+      text: "Mekanik, elektriksel, elektronik ve yazılımsal problemlerin tespiti; çalışma süresine göre bakım planlaması.",
+      image: "/images/service/service-01.jpeg"
     },
     {
-      title: "Teknik Servis ve Mühendislik",
-      text: "Bakım, onarım, arıza tespiti, makine kurulumu, taşıma, modernizasyon, üretim optimizasyonu ve teknik destek."
+      title: "Söküm, Taşıma ve Yeniden Kurulum",
+      text: "Fabrika içi yer değişikliği veya farklı şehre taşınacak makinelerin teknik süreçlerinin koordine edilmesi.",
+      image: "/images/service/service-02.jpeg"
     }
   ],
   en: [
     {
-      title: "Used Machinery Solutions",
-      text: "Machine sourcing and sales, inspection, valuation, trade-in, refurbishment, relocation, installation and commissioning services."
+      title: "Installation and Commissioning",
+      text: "Positioning, connection checks, first-run tests and production readiness for new or used machines.",
+      image: "/images/service/service-cover.png"
     },
     {
-      title: "New Machinery and Production Lines",
-      text: "Machinery selection, sourcing, production line planning, installation, commissioning and operator training."
+      title: "Fault Diagnosis and Maintenance",
+      text: "Diagnosis of mechanical, electrical, electronic and software issues with usage-based maintenance planning.",
+      image: "/images/service/service-01.jpeg"
     },
     {
-      title: "Technical Service and Engineering",
-      text: "Maintenance, repair, fault diagnosis, relocation, modernization, production optimization and technical support."
+      title: "Dismantling, Relocation and Reinstallation",
+      text: "Coordination of technical workflows for in-factory moves or machines relocated to another city.",
+      image: "/images/service/service-02.jpeg"
     }
   ]
-} satisfies Record<Locale, Array<{ title: string; text: string }>>;
+} satisfies Record<Locale, Array<{ title: string; text: string; image: string }>>;
+
+export const projectServices = {
+  tr: [
+    "Yeni üretim tesisi ve makine parkuru planlaması",
+    "Kapasite artırımı ve darboğaz analizi",
+    "Fabrika içi makine yerleşimi",
+    "Makine yenileme ve modernizasyon",
+    "Özel makine, aparat ve yardımcı ekipman çözümleri",
+    "Kurulum ve devreye alma koordinasyonu"
+  ],
+  en: [
+    "New production facility and machine park planning",
+    "Capacity increase and bottleneck analysis",
+    "In-factory machine layout",
+    "Machine renewal and modernization",
+    "Custom machine, fixture and auxiliary equipment solutions",
+    "Installation and commissioning coordination"
+  ]
+} satisfies Record<Locale, string[]>;
 
 export const brands = ["Sinomak", "Plasarf", "Mekotek", "Durma", "Ermaksan", "MAC Italy", "Eurostamp"];
 
 export const pageCopy: Record<Locale, Record<PageKey, { title: string; description: string; body: string }>> = {
   tr: {
     home: {
-      title: "Metal İşleme Teknolojilerinde Güvenilir Çözüm Ortağınız",
-      description: "Sıfır ve ikinci el metal işleme makineleri; proje, kurulum, teknik servis, bakım ve onarım çözümleri.",
-      body: "Acertech, 2005'ten beri endüstriyel makine ihtiyaçlarını teknik analiz, doğru tedarik, kurulum ve satış sonrası destekle ele alır."
+      title: "Endüstriyel Makine Teknolojilerinde Güvenilir Çözüm Ortağınız",
+      description: "Endüstriyel makine yatırımlarında teknik, güvenilir ve sonuç odaklı çözümler.",
+      body: "AcerTech; endüstriyel makine tedariki, teknik servis, kurulum, ikinci el makine ve proje desteğiyle işletmelerin üretim süreçlerine değer katar. İhtiyacınızı analiz eder, doğru kapasiteyi belirler ve yatırım sürecini teknik açıdan destekler."
     },
     machines: {
-      title: "Makineler ve Çözümler",
-      description: "Metal işleme, sac işleme, gıda dolum ve üretim hattı ihtiyaçları için marka bağımsız makine çözümleri.",
-      body: "Sıfır makine tedariki ve üretim hattı planlamasında teknik kapasite, işlenecek malzeme, hedef verimlilik ve servis ihtiyacı birlikte değerlendirilir."
+      title: "Sanayi ve Metal İşleme Makineleri",
+      description: "Üretim kapasitenize ve bütçenize uygun sanayi makinelerini birlikte belirleyelim.",
+      body: "AcerTech; metal işleme, talaşlı imalat ve genel sanayi makinelerinde teknik bilgilendirme, ürün karşılaştırma, tekliflendirme, kurulum ve devreye alma desteği sunar."
     },
     services: {
-      title: "Hizmetler",
-      description: "Kurulum, devreye alma, teknik servis, bakım, modernizasyon ve proje mühendisliği hizmetleri.",
-      body: "Saha analiziyle başlayan süreç; makine seçimi, lojistik, kurulum, devreye alma, operatör bilgilendirmesi ve teknik destekle tamamlanır."
+      title: "Endüstriyel Makine Teknik Servis ve Destek Hizmetleri",
+      description: "Makine kurulumu, arıza tespiti, bakım, taşıma ve devreye alma hizmetleri.",
+      body: "Plansız makine duruşları üretim kaybı, teslimat gecikmesi ve ek maliyet oluşturur. AcerTech, makinelerin güvenli ve verimli çalışması için kurulumdan periyodik bakıma kadar farklı aşamalarda teknik destek sağlar."
     },
     used: {
-      title: "İkinci El Makine Çözümleri",
-      description: "İkinci el metal işleme makineleri için alım, satım, ekspertiz, değerleme, takas ve kurulum desteği.",
-      body: "İkinci el makine sürecinde teknik durum, revizyon ihtiyacı, taşıma koşulları ve devreye alma planı birlikte ele alınır."
+      title: "İkinci El Endüstriyel Makineler",
+      description: "Güncel ikinci el makine ilanları ve talebe özel makine araştırması.",
+      body: "Satılık ikinci el makinelerin güncel fotoğraf, teknik bilgi ve fiyatları için AcerTech ile doğrudan iletişime geçebilirsiniz. Aradığınız makine ilanlarda bulunmuyorsa marka, model, üretim yılı, kapasite ve bütçe bilgilerinizi iletin."
     },
     sell: {
       title: "Makinenizi Satın",
-      description: "Satmak istediğiniz endüstriyel makine için Acertech'e teknik bilgi ve fotoğraf ile ön başvuru iletin.",
-      body: "Makinenizi satmak istiyorsanız marka, model, yıl, çalışma durumu ve konum bilgilerini paylaşarak WhatsApp üzerinden değerlendirme süreci başlatabilirsiniz."
+      description: "Satmak istediğiniz endüstriyel makine için AcerTech'e teknik bilgi ve fotoğraf ile ön başvuru iletin.",
+      body: "Makinenizin marka-modeli, üretim yılı, çalışma durumu, bulunduğu şehir, talep edilen fiyat ile güncel fotoğraf ve videolarını paylaşın. Teknik değerlendirme sonrası uygun alıcı veya satış kanalı için yönlendirme yapılır."
     },
     projects: {
-      title: "Projeler",
-      description: "Gerçek saha projeleri ve uygulama çalışmaları için hazırlanan altyapı.",
-      body: "Gerçek saha projelerimiz ve uygulama çalışmalarımız bu alana eklenecektir."
+      title: "Endüstriyel Proje ve Mühendislik",
+      description: "Yeni yatırım, kapasite artırımı ve üretim hattı geliştirme desteği.",
+      body: "Her işletmenin ürünü, kapasitesi ve çalışma alanı farklıdır. AcerTech, makine seçimini proje bütünlüğü içinde değerlendirerek uygulanabilir ve verimli çözümler geliştirir."
     },
     industries: {
-      title: "Hizmet Verdiğimiz Sektörler",
-      description: "Metal işleme, gıda, silo, depolama, taşıma ve endüstriyel üretim tesisleri için teknik çözümler.",
-      body: "Acertech, farklı sektörlerin üretim akışı, kapasite hedefi ve teknik servis ihtiyacına göre çözüm geliştirir."
+      title: "Sektörel Endüstriyel Makine Çözümleri",
+      description: "Farklı üretim alanlarına uygun makine ve teknik çözüm desteği.",
+      body: "Makine ve proje çözümlerimizi sektörün üretim standardı, kapasite ihtiyacı, malzeme türü ve hassasiyet beklentisine göre şekillendiriyoruz."
     },
     about: {
-      title: "Hakkımızda",
-      description: "Acertech Makine Sanayi ve Ticaret hakkında kurumsal bilgiler.",
-      body: "Acertech Makine Sanayi ve Ticaret, 2005 yılından bu yana endüstriyel makine, üretim teknolojileri ve teknik hizmetler alanında faaliyet göstermektedir. 25 yıllık sektör ve saha tecrübesini doğru makine seçimi, proje mühendisliği, kurulum, devreye alma, teknik servis ve satış sonrası destek hizmetleriyle birleştirir."
+      title: "AcerTech Hakkında",
+      description: "Makine satışından öte, üretim odaklı teknik çözüm ortaklığı.",
+      body: "AcerTech Endüstriyel Makine Teknolojileri; sanayi makineleri, teknik servis, ikinci el makine ve proje çözümleri alanlarında faaliyet gösterir. Amacımız yalnızca makine sunmak değil, işletmenin uzun vadeli üretim hedeflerine uygun çözümü belirlemektir."
     },
     contact: {
-      title: "İletişim",
-      description: "Acertech telefon, WhatsApp, e-posta, çalışma saatleri ve teklif formu.",
-      body: "Acertech'e telefon, WhatsApp veya e-posta ile ulaşabilir; teklif talebinizi hızlıca iletebilirsiniz."
+      title: "AcerTech İletişim",
+      description: "Makine, servis ve proje talepleriniz için doğrudan iletişim.",
+      body: "Makine yatırımı, teknik servis, ikinci el makine veya proje ihtiyacınız için formu doldurun ya da WhatsApp üzerinden bize ulaşın."
     },
     privacyNotice: {
       title: "KVKK Aydınlatma Metni",
-      description: "Acertech kişisel verilerin korunması aydınlatma metni.",
-      body: "Bu metin; iletişim, teklif talebi ve hizmet süreçlerinde paylaşılan kişisel verilerin hangi amaçlarla işlenebileceğini açıklamak için hazırlanmıştır. Yayına alınmadan önce tam adres ve hukuki son kontrol tamamlanmalıdır."
+      description: "AcerTech kişisel verilerin korunması aydınlatma metni.",
+      body: "Bu metin; iletişim, teklif talebi ve hizmet süreçlerinde paylaşılan kişisel verilerin hangi amaçlarla işlenebileceğini açıklamak için hazırlanmıştır."
     },
     privacyPolicy: {
       title: "Gizlilik Politikası",
-      description: "Acertech web sitesi gizlilik politikasi.",
+      description: "AcerTech web sitesi gizlilik politikası.",
       body: "Bu web sitesi yalnızca iletişim ve teklif süreçleri için gerekli bilgileri kullanır. Formlar WhatsApp mesajı oluşturur; bu sitede veritabanı veya üyelik sistemi bulunmaz."
     },
     cookiePolicy: {
       title: "Çerez Politikası",
-      description: "Acertech çerez kullanımı ve tercihleri.",
-      body: "Zorunlu çerezler site işleyişi için kullanılır. Analitik çerezler yalnızca ziyaretçi onayı verilirse Google Analytics ölçümünü etkinleştirir."
+      description: "AcerTech çerez kullanımı ve tercihleri.",
+      body: "Zorunlu çerezler site işleyişi için kullanılır. Analitik çerezler yalnızca ziyaretçi onayı verilirse ölçümü etkinleştirir."
     }
   },
   en: {
     home: {
-      title: "Your Trusted Partner in Metalworking Technologies",
-      description: "New and used metalworking machinery, project engineering, installation, technical service, maintenance and repair solutions.",
-      body: "Acertech has supported industrial machinery needs since 2005 with technical analysis, suitable sourcing, installation and after-sales support."
+      title: "Your Trusted Partner in Industrial Machinery Technologies",
+      description: "Technical, reliable and result-oriented solutions for industrial machinery investments.",
+      body: "AcerTech adds value to production workflows with industrial machinery sourcing, technical service, installation, used machinery and project support."
     },
     machines: {
-      title: "Machines and Solutions",
-      description: "Brand-independent machinery solutions for metalworking, sheet metal processing, food filling and production lines.",
-      body: "For new machinery and production lines, technical capacity, material profile, productivity goals and service needs are evaluated together."
+      title: "Industrial and Metalworking Machinery",
+      description: "Let us define the right industrial machines for your capacity and budget.",
+      body: "AcerTech provides technical guidance, product comparison, quotation, installation and commissioning support for metalworking, machining and general industrial machinery."
     },
     services: {
-      title: "Services",
-      description: "Installation, commissioning, technical service, maintenance, modernization and project engineering services.",
-      body: "The process starts with field analysis and continues through machine selection, logistics, installation, commissioning, operator guidance and support."
+      title: "Industrial Machine Technical Service and Support",
+      description: "Machine installation, fault diagnosis, maintenance, relocation and commissioning services.",
+      body: "Unplanned machine downtime creates production loss and extra cost. AcerTech supports safe and efficient machine operation from installation to periodic maintenance."
     },
     used: {
-      title: "Used Machinery Solutions",
-      description: "Used metalworking machinery sourcing, sales, inspection, valuation, trade-in and installation support.",
-      body: "Used machinery work includes technical condition, refurbishment needs, relocation requirements and commissioning planning."
+      title: "Used Industrial Machinery",
+      description: "Current used machine listings and request-based machine search.",
+      body: "Contact AcerTech for current photos, technical information and prices of used machinery. If the machine you need is not listed, share brand, model, year, capacity and budget information."
     },
     sell: {
       title: "Sell Your Machine",
-      description: "Send Acertech preliminary information and photos for the industrial machine you want to sell.",
-      body: "Share brand, model, year, operating condition and location to start a WhatsApp-based evaluation for your machine."
+      description: "Send AcerTech technical information and photos for the industrial machine you want to sell.",
+      body: "Share brand, model, production year, operating condition, location, requested price and current photos or videos. After technical review, we guide the suitable buyer or sales channel."
     },
     projects: {
-      title: "Projects",
-      description: "Infrastructure for verified field projects and application work.",
-      body: "Our verified field projects and application work will be added to this area."
+      title: "Industrial Project and Engineering",
+      description: "Support for new investments, capacity increases and production line development.",
+      body: "Every operation has different products, capacities and working areas. AcerTech evaluates machinery selection within the full project context."
     },
     industries: {
-      title: "Industries We Serve",
-      description: "Technical solutions for metalworking, food, silo, storage, conveying and industrial production facilities.",
-      body: "Acertech develops solutions around each industry's production flow, capacity target and technical support needs."
+      title: "Sector-Focused Industrial Machinery Solutions",
+      description: "Machine and technical solution support for different production fields.",
+      body: "We shape machinery and project solutions around sector standards, capacity needs, material types and precision expectations."
     },
     about: {
-      title: "About",
-      description: "Corporate information about Acertech Makine Sanayi ve Ticaret.",
-      body: "Acertech Makine Sanayi ve Ticaret has operated in industrial machinery, production technologies and technical services since 2005. The company combines 25 years of sector and field experience with machinery selection, project engineering, installation, commissioning, technical service and after-sales support."
+      title: "About AcerTech",
+      description: "Production-focused technical solution partnership beyond machinery sales.",
+      body: "AcerTech Industrial Machinery Technologies operates in industrial machinery, technical service, used machinery and project solutions. Our aim is to define the right solution for long-term production goals."
     },
     contact: {
-      title: "Contact",
-      description: "Acertech phone, WhatsApp, email, working hours and quote form.",
-      body: "Contact Acertech by phone, WhatsApp or email and send your quotation request quickly."
+      title: "AcerTech Contact",
+      description: "Direct contact for machinery, service and project requests.",
+      body: "For machinery investment, technical service, used machinery or project needs, fill out the form or reach us via WhatsApp."
     },
     privacyNotice: {
       title: "Privacy Notice",
-      description: "Acertech personal data privacy notice.",
-      body: "This notice explains how personal data shared during contact, quotation and service processes may be processed. Full address and legal review should be completed before publication."
+      description: "AcerTech personal data privacy notice.",
+      body: "This notice explains how personal data shared during contact, quotation and service processes may be processed."
     },
     privacyPolicy: {
       title: "Privacy Policy",
-      description: "Acertech website privacy policy.",
-      body: "This website uses only the information needed for contact and quotation workflows. Forms create WhatsApp messages; there is no database or membership system on this site."
+      description: "AcerTech website privacy policy.",
+      body: "This website uses only information needed for contact and quotation workflows. Forms create WhatsApp messages; there is no database or membership system."
     },
     cookiePolicy: {
       title: "Cookie Policy",
-      description: "Acertech cookie usage and preferences.",
-      body: "Required cookies are used for site operation. Analytics cookies enable Google Analytics measurement only after visitor consent."
+      description: "AcerTech cookie usage and preferences.",
+      body: "Required cookies are used for site operation. Analytics cookies enable measurement only after visitor consent."
     }
   }
 };

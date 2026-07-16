@@ -8,6 +8,7 @@ import { siteConfig } from "@/lib/site-config";
 import { pathFor, type PageKey } from "@/i18n/routes";
 import { whatsappLink } from "@/lib/whatsapp";
 import { trackEvent } from "@/lib/analytics";
+import { industries, machineItems, projectServices, services } from "@/data/content";
 
 const labels = {
   tr: {
@@ -20,7 +21,6 @@ const labels = {
     industries: "Sektörler",
     about: "Hakkımızda",
     contact: "İletişim",
-    quote: "Teklif Al",
     menu: "Menü",
     close: "Kapat"
   },
@@ -34,7 +34,6 @@ const labels = {
     industries: "Industries",
     about: "About",
     contact: "Contact",
-    quote: "Get a Quote",
     menu: "Menu",
     close: "Close"
   }
@@ -42,6 +41,66 @@ const labels = {
 
 type NavKey = "home" | "machines" | "services" | "used" | "projects" | "industries" | "about" | "contact";
 const nav: NavKey[] = ["home", "machines", "services", "used", "projects", "industries", "about", "contact"];
+
+function slugify(value: string) {
+  return value
+    .toLocaleLowerCase("tr-TR")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ı/g, "i")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function getMenuItems(locale: Locale, key: NavKey): Array<{ label: string; href: string }> {
+  const tr = locale === "tr";
+
+  if (key === "machines") {
+    return machineItems.map((item) => ({
+      label: item[locale],
+      href: `${pathFor(locale, "machines")}#${slugify(item.tr)}`
+    }));
+  }
+
+  if (key === "services") {
+    return services[locale].map((service) => ({
+      label: service.title,
+      href: pathFor(locale, "services")
+    }));
+  }
+
+  if (key === "used") {
+    return [
+      { label: tr ? "İkinci el makine ilanları" : "Used machine listings", href: pathFor(locale, "used") },
+      { label: tr ? "Makine almak isteyenler" : "For buyers", href: pathFor(locale, "used") },
+      { label: tr ? "Makinesini satmak isteyenler" : "For sellers", href: pathFor(locale, "sell") }
+    ];
+  }
+
+  if (key === "projects") {
+    return projectServices[locale].map((label) => ({
+      label,
+      href: pathFor(locale, "projects")
+    }));
+  }
+
+  if (key === "industries") {
+    return industries[locale].map((label) => ({
+      label,
+      href: pathFor(locale, "industries")
+    }));
+  }
+
+  if (key === "about") {
+    return [
+      { label: tr ? "Yaklaşımımız" : "Our approach", href: pathFor(locale, "about") },
+      { label: tr ? "Değerlerimiz" : "Values", href: pathFor(locale, "about") },
+      { label: tr ? "Satış sonrası destek" : "After-sales support", href: pathFor(locale, "about") }
+    ];
+  }
+
+  return [];
+}
 
 function ExchangeRates({ locale }: { locale: Locale }) {
   const [rates, setRates] = useState<{ usdTry: number; eurTry: number } | null>(null);
@@ -104,13 +163,27 @@ export function Header({ locale, pageKey }: { locale: Locale; pageKey: PageKey }
           <Link className="brand" href={pathFor(locale, "home")} aria-label="ACERTECH">
             <Image src={siteConfig.logo} alt="ACERTECH" width={190} height={48} priority />
           </Link>
+
           <nav className="desktop-nav" aria-label={locale === "tr" ? "Ana menü" : "Main menu"}>
-            {nav.map((item) => (
-              <Link key={item} href={pathFor(locale, item)}>
-                {t[item]}
-              </Link>
-            ))}
+            {nav.map((item) => {
+              const submenu = getMenuItems(locale, item);
+              return (
+                <div className="mega-wrap" key={item}>
+                  <Link href={pathFor(locale, item)}>{t[item]}</Link>
+                  {submenu.length > 0 ? (
+                    <div className="mega-menu">
+                      {submenu.map((subitem) => (
+                        <Link key={`${item}-${subitem.label}`} href={subitem.href}>
+                          {subitem.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              );
+            })}
           </nav>
+
           <div className="header-actions">
             <Link className="lang-switch" href={pathFor(otherLocale, pageKey)} aria-label={locale === "tr" ? "Switch to English" : "Türkçeye geç"}>
               <span className={locale === "tr" ? "active" : ""}>TR</span>
@@ -124,6 +197,7 @@ export function Header({ locale, pageKey }: { locale: Locale; pageKey: PageKey }
           </div>
         </div>
       </header>
+
       {open ? (
         <div className="mobile-panel" role="dialog" aria-modal="true" aria-label={t.menu}>
           <div className="mobile-panel-head">
