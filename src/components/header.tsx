@@ -99,18 +99,6 @@ export function Header({ locale, pageKey }: { locale: Locale; pageKey: PageKey }
 
   return (
     <>
-      <div className={isHome ? "topbar topbar-home" : "topbar"}>
-        <div className="container topbar-inner">
-          <div className="topbar-contact">
-            <a href={siteConfig.emailHref} onClick={() => trackEvent("email_click", "topbar")}>
-              {siteConfig.email}
-            </a>
-            <span>{siteConfig.location}</span>
-            <span>{siteConfig.hours[locale]}</span>
-          </div>
-          <ExchangeRates locale={locale} />
-        </div>
-      </div>
       <header className={isHome ? "site-header site-header-home" : "site-header"}>
         <div className="container header-inner">
           <Link className="brand" href={pathFor(locale, "home")} aria-label="ACERTECH">
@@ -129,6 +117,7 @@ export function Header({ locale, pageKey }: { locale: Locale; pageKey: PageKey }
               <span> / </span>
               <span className={locale === "en" ? "active" : ""}>EN</span>
             </Link>
+            <ExchangeRates locale={locale} />
             <button className="menu-button" type="button" aria-expanded={open} onClick={() => setOpen(true)}>
               {t.menu}
             </button>

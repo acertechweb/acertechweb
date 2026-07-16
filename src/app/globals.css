@@ -213,21 +213,17 @@ img {
 }
 
 .exchange-rates {
-  margin-left: auto;
-  gap: 0.45rem;
+  gap: 0.55rem;
   color: var(--anthracite);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 850;
 }
 
 .exchange-rates span {
   display: inline-flex;
-  min-height: 26px;
+  min-height: 42px;
   align-items: center;
-  border: 1px solid rgba(37, 42, 46, 0.12);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.74);
-  padding: 0.22rem 0.55rem;
+  padding: 0;
 }
 
 .site-header {
@@ -262,6 +258,10 @@ img {
 .site-header-home .menu-button {
   border-color: rgba(255, 255, 255, 0.34);
   background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.site-header-home .exchange-rates {
   color: white;
 }
 
@@ -945,7 +945,8 @@ img {
   .desktop-nav,
   .header-actions .btn,
   .header-actions .lang,
-  .header-actions .lang-switch {
+  .header-actions .lang-switch,
+  .header-actions .exchange-rates {
     display: none;
   }
 
