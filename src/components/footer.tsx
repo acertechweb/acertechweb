@@ -2,17 +2,26 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/site-config";
 import { siteConfig } from "@/lib/site-config";
-import { pathFor } from "@/i18n/routes";
+import { pathFor, type PageKey } from "@/i18n/routes";
 import { machineCategories } from "@/data/content";
-import { whatsappLink } from "@/lib/whatsapp";
+
+const footerLinks: Array<[PageKey, Record<Locale, string>]> = [
+  ["home", { tr: "Ana Sayfa", en: "Home" }],
+  ["machines", { tr: "Makineler", en: "Machines" }],
+  ["services", { tr: "Teknik Servis", en: "Technical Service" }],
+  ["used", { tr: "İkinci El", en: "Used Machinery" }],
+  ["projects", { tr: "Projeler", en: "Projects" }],
+  ["contact", { tr: "İletişim", en: "Contact" }]
+];
 
 export function Footer({ locale }: { locale: Locale }) {
   const tr = locale === "tr";
+
   return (
     <footer className="footer">
       <div className="container footer-grid">
         <div>
-          <Image className="footer-logo" src={siteConfig.logo} alt="ACERTECH" width={190} height={48} />
+          <Image className="footer-logo" src={siteConfig.logo} alt="ACERTECH" width={170} height={43} />
           <p>
             {tr
               ? "Acertech, metal işleme makineleri, teknik servis, proje ve mühendislik çözümleri sunar."
@@ -20,35 +29,32 @@ export function Footer({ locale }: { locale: Locale }) {
           </p>
           <strong>{tr ? "2005'ten beri" : "Since 2005"}</strong>
         </div>
+
         <div>
-          <h2>{tr ? "Hızlı Bağlantılar" : "Quick Links"}</h2>
-          {(["machines", "services", "used", "sell", "projects", "contact"] as const).map((key) => (
+          <h2>{tr ? "Sayfalar" : "Pages"}</h2>
+          {footerLinks.map(([key, label]) => (
             <Link key={key} href={pathFor(locale, key)}>
-              {key}
+              {label[locale]}
             </Link>
           ))}
         </div>
+
         <div>
           <h2>{tr ? "Makine Kategorileri" : "Machine Categories"}</h2>
           {machineCategories[locale].slice(0, 6).map((item) => (
-            <span key={item}>{item}</span>
+            <Link key={item} href={pathFor(locale, "machines")}>
+              {item}
+            </Link>
           ))}
         </div>
-        <div>
-          <h2>{tr ? "İletişim" : "Contact"}</h2>
-          <a href={siteConfig.phoneHref}>{siteConfig.phoneDisplay}</a>
-          <a href={whatsappLink(locale)}>WhatsApp</a>
-          <a href={siteConfig.emailHref}>{siteConfig.email}</a>
-          <span>{siteConfig.location}</span>
-          <span>{siteConfig.hours[locale]}</span>
-          <Link href={pathFor(locale, "privacyNotice")}>{tr ? "KVKK Aydınlatma Metni" : "Privacy Notice"}</Link>
-          <Link href={pathFor(locale, "privacyPolicy")}>{tr ? "Gizlilik Politikası" : "Privacy Policy"}</Link>
-          <Link href={pathFor(locale, "cookiePolicy")}>{tr ? "Çerez Politikası" : "Cookie Policy"}</Link>
-        </div>
       </div>
+
       <div className="container footer-bottom">
         <span>© {new Date().getFullYear()} {siteConfig.company}</span>
-        <span>TR / EN</span>
+        <div className="footer-legal">
+          <Link href={pathFor(locale, "privacyNotice")}>{tr ? "KVKK" : "Privacy Notice"}</Link>
+          <Link href={pathFor(locale, "privacyPolicy")}>{tr ? "Gizlilik" : "Privacy"}</Link>
+        </div>
       </div>
     </footer>
   );

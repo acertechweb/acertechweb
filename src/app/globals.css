@@ -817,40 +817,65 @@ img {
 .footer {
   background: var(--anthracite);
   color: rgba(255, 255, 255, 0.78);
-  padding: 3rem 0 1rem;
+  padding: 2.2rem 0 0.85rem;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr repeat(3, 1fr);
+  grid-template-columns: 1.35fr 0.85fr 1.2fr;
   align-items: start;
-  gap: 2rem;
+  gap: clamp(1.4rem, 4vw, 3.2rem);
 }
 
 .footer h2 {
-  margin: 0 0 1rem;
+  margin: 0 0 0.75rem;
   color: white;
-  font-size: 1rem;
+  font-size: 0.92rem;
+  font-weight: 850;
 }
 
 .footer a,
 .footer span,
 .footer p {
   display: block;
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.42rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.footer a {
+  width: fit-content;
+  transition: color 160ms ease;
+}
+
+.footer a:hover {
+  color: white;
 }
 
 .footer-logo {
   filter: brightness(0) invert(1);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer p {
+  max-width: 360px;
+  margin-bottom: 0.7rem;
 }
 
 .footer-bottom {
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.14);
-  padding-top: 1rem;
+  padding-top: 0.75rem;
+  color: rgba(255, 255, 255, 0.64);
+}
+
+.footer-legal {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
 }
 
 .floating-whatsapp {
