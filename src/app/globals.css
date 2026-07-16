@@ -345,6 +345,28 @@ img {
   font-weight: 800;
 }
 
+.intro-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  background: #111111;
+  opacity: 1;
+  transition: opacity 800ms ease, visibility 800ms ease;
+}
+
+.intro-splash-leaving {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.intro-splash-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .hero {
   padding: clamp(3rem, 8vw, 6rem) 0 3rem;
   background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);

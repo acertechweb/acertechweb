@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { isLocale, locales } from "@/lib/site-config";
 import { Footer } from "@/components/footer";
+import { IntroSplash } from "@/components/intro-splash";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { organizationJsonLd } from "@/lib/seo";
 
@@ -25,6 +26,7 @@ export default async function LocaleLayout({
         Skip to content
       </a>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <IntroSplash />
       {children}
       <Footer locale={locale} />
       <WhatsAppButton locale={locale} />
