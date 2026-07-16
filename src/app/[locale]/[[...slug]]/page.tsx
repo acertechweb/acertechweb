@@ -1,13 +1,12 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import type { Locale } from "@/lib/site-config";
-import { locales } from "@/lib/site-config";
+import { isLocale } from "@/lib/site-config";
 import { allPageEntries, pageMetadata } from "@/lib/seo";
 import { pageKeyFromSlug } from "@/i18n/routes";
 import { Header } from "@/components/header";
 import { HomePage, StandardPage } from "@/components/page-content";
 
-type Params = { locale: Locale; slug?: string[] };
+type Params = { locale: string; slug?: string[] };
 
 export function generateStaticParams() {
   return allPageEntries().map(({ locale, path }) => {
@@ -18,7 +17,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { locale, slug } = await params;
-  if (!locales.includes(locale)) return {};
+  if (!isLocale(locale)) return {};
   const key = pageKeyFromSlug(locale, slug?.join("/"));
   if (!key) return {};
   return pageMetadata(locale, key);
@@ -26,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 
 export default async function LocalePage({ params }: { params: Promise<Params> }) {
   const { locale, slug } = await params;
-  if (!locales.includes(locale)) notFound();
+  if (!isLocale(locale)) notFound();
   const pageKey = pageKeyFromSlug(locale, slug?.join("/"));
   if (!pageKey) notFound();
 

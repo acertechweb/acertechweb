@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
-import type { Locale } from "@/lib/site-config";
-import { locales } from "@/lib/site-config";
+import { isLocale, locales } from "@/lib/site-config";
 import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 import { CookieConsent } from "@/components/cookie-consent";
@@ -15,10 +14,10 @@ export default async function LocaleLayout({
   params
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (!locales.includes(locale)) notFound();
+  if (!isLocale(locale)) notFound();
   const jsonLd = organizationJsonLd(locale);
 
   return (
