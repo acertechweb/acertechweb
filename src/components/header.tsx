@@ -12,8 +12,8 @@ import { trackEvent } from "@/lib/analytics";
 const labels = {
   tr: {
     home: "Ana Sayfa",
-    machines: "Makineler ve Çözümler",
-    services: "Hizmetler",
+    machines: "Makineler",
+    services: "Teknik Servis",
     used: "İkinci El",
     sell: "Makinenizi Satın",
     projects: "Projeler",
@@ -22,13 +22,12 @@ const labels = {
     contact: "İletişim",
     quote: "Teklif Al",
     menu: "Menü",
-    close: "Kapat",
-    store: "Sahibinden yakında"
+    close: "Kapat"
   },
   en: {
     home: "Home",
-    machines: "Machines and Solutions",
-    services: "Services",
+    machines: "Machines",
+    services: "Technical Service",
     used: "Used Machinery",
     sell: "Sell Your Machine",
     projects: "Projects",
@@ -37,8 +36,7 @@ const labels = {
     contact: "Contact",
     quote: "Get a Quote",
     menu: "Menu",
-    close: "Close",
-    store: "Sahibinden soon"
+    close: "Close"
   }
 };
 
@@ -49,6 +47,7 @@ export function Header({ locale, pageKey }: { locale: Locale; pageKey: PageKey }
   const [open, setOpen] = useState(false);
   const t = labels[locale];
   const otherLocale = locale === "tr" ? "en" : "tr";
+  const isHome = pageKey === "home";
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -64,7 +63,7 @@ export function Header({ locale, pageKey }: { locale: Locale; pageKey: PageKey }
 
   return (
     <>
-      <div className="topbar">
+      <div className={isHome ? "topbar topbar-home" : "topbar"}>
         <div className="container topbar-inner">
           <a href={siteConfig.phoneHref} onClick={() => trackEvent("phone_click", "topbar")}>
             {siteConfig.phoneDisplay}
@@ -79,27 +78,17 @@ export function Header({ locale, pageKey }: { locale: Locale; pageKey: PageKey }
           </a>
         </div>
       </div>
-      <header className="site-header">
+      <header className={isHome ? "site-header site-header-home" : "site-header"}>
         <div className="container header-inner">
           <Link className="brand" href={pathFor(locale, "home")} aria-label="ACERTECH">
             <Image src={siteConfig.logo} alt="ACERTECH" width={190} height={48} priority />
           </Link>
-          <nav className="desktop-nav" aria-label="Ana menü">
-            <div className="mega-wrap">
-              <Link href={pathFor(locale, "machines")}>{t.machines}</Link>
-              <div className="mega-menu" aria-label={t.machines}>
-                <Link href={pathFor(locale, "machines")}>Fiber lazer, CNC abkant, giyotin makas</Link>
-                <Link href={pathFor(locale, "services")}>{t.services}</Link>
-                <Link href={pathFor(locale, "used")}>{t.used}</Link>
-              </div>
-            </div>
-            {nav
-              .filter((item) => item !== "machines")
-              .map((item) => (
-                <Link key={item} href={pathFor(locale, item)}>
-                  {t[item]}
-                </Link>
-              ))}
+          <nav className="desktop-nav" aria-label={locale === "tr" ? "Ana menü" : "Main menu"}>
+            {nav.map((item) => (
+              <Link key={item} href={pathFor(locale, item)}>
+                {t[item]}
+              </Link>
+            ))}
           </nav>
           <div className="header-actions">
             <Link className="lang" href={pathFor(otherLocale, pageKey)}>

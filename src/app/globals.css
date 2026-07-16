@@ -181,6 +181,10 @@ img {
   font-size: 0.86rem;
 }
 
+.topbar-home {
+  display: none;
+}
+
 .topbar-inner,
 .header-inner,
 .hero-grid,
@@ -207,6 +211,36 @@ img {
   border-bottom: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(12px);
+}
+
+.site-header-home {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  border-bottom-color: transparent;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.site-header-home .brand img {
+  filter: brightness(0) invert(1);
+}
+
+.site-header-home .desktop-nav {
+  color: white;
+}
+
+.site-header-home .lang,
+.site-header-home .menu-button {
+  border-color: rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.site-header-home .btn-primary {
+  background: var(--orange);
+  color: white;
 }
 
 .header-inner {
@@ -351,24 +385,26 @@ img {
 }
 
 .home-gateway {
-  background: var(--anthracite);
-  border-bottom: 1px solid var(--border);
+  min-height: 100dvh;
+  background: #111111;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .gateway-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  min-height: clamp(560px, calc(100vh - 114px), 760px);
+  min-height: 100dvh;
 }
 
 .gateway-panel {
   position: relative;
   display: flex;
-  min-height: 560px;
+  min-height: 100dvh;
   overflow: hidden;
   isolation: isolate;
-  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
   color: white;
+  opacity: 1;
 }
 
 .gateway-panel:last-child {
@@ -377,18 +413,18 @@ img {
 
 .gateway-panel img {
   object-fit: cover;
-  transform: scale(1.01);
-  transition: transform 260ms ease, filter 260ms ease;
+  object-position: center;
+  transform: none;
+  transition: filter 220ms ease;
 }
 
 .gateway-panel:hover img,
 .gateway-panel:focus-visible img {
-  transform: scale(1.055);
-  filter: saturate(1.06) contrast(1.04);
+  filter: saturate(1.05) contrast(1.04);
 }
 
 .gateway-panel-featured {
-  min-height: 600px;
+  min-height: 100dvh;
 }
 
 .gateway-shade {
@@ -396,8 +432,8 @@ img {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(23, 25, 27, 0.16), rgba(23, 25, 27, 0.86)),
-    linear-gradient(90deg, rgba(37, 42, 46, 0.42), rgba(37, 42, 46, 0.12));
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.62)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.12));
 }
 
 .gateway-content {
@@ -407,39 +443,43 @@ img {
   width: 100%;
   min-height: inherit;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: clamp(1.2rem, 3vw, 2.2rem);
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  text-align: center;
 }
 
 .gateway-kicker {
   width: fit-content;
-  border-left: 4px solid var(--orange);
-  padding-left: 0.7rem;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  padding: 0.28rem 0.6rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.66rem;
   font-weight: 900;
   letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .gateway-title {
   display: block;
   max-width: 520px;
-  margin-top: 0.8rem;
+  margin-top: 1rem;
   color: white;
-  font-size: clamp(2rem, 4.3vw, 4.3rem);
+  font-size: clamp(2.7rem, 5.6vw, 5.6rem);
   font-weight: 950;
-  line-height: 0.98;
+  line-height: 0.9;
   letter-spacing: 0;
+  text-transform: uppercase;
 }
 
 .gateway-text {
   display: block;
-  max-width: 440px;
-  margin-top: 1rem;
-  color: rgba(255, 255, 255, 0.88);
-  font-size: clamp(1rem, 1.45vw, 1.22rem);
-  font-weight: 650;
-  line-height: 1.45;
+  max-width: 260px;
+  margin-top: 0.9rem;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  font-weight: 700;
+  line-height: 1.5;
 }
 
 .gateway-action {
@@ -448,12 +488,24 @@ img {
   min-height: 44px;
   align-items: center;
   margin-top: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.46);
-  border-radius: 6px;
-  background: rgba(242, 106, 33, 0.94);
-  padding: 0.72rem 0.95rem;
+  border: 1px solid rgba(242, 106, 33, 0.72);
+  border-radius: 0;
+  background: rgba(242, 106, 33, 0.12);
+  padding: 0.62rem 1.25rem;
   color: white;
   font-weight: 900;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.gateway-panel:hover .gateway-action,
+.gateway-panel:focus-visible .gateway-action {
+  opacity: 1;
+  transform: translateY(0);
+  background: var(--orange);
 }
 
 .stats-band {
