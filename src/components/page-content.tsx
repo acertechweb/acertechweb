@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/lib/site-config";
 import { siteConfig } from "@/lib/site-config";
@@ -52,29 +53,36 @@ function ContactBlock({ locale }: { locale: Locale }) {
 
 export function HomePage({ locale }: { locale: Locale }) {
   const tr = locale === "tr";
-  const copy = pageCopy[locale].home;
+
   return (
     <>
-      <section className="hero">
-        <div className="container hero-grid">
-          <div>
-            <p className="eyebrow">{tr ? "2005'ten beri endüstriyel çözümler" : "Industrial solutions since 2005"}</p>
-            <h1>{copy.title}</h1>
-            <p>{copy.description}</p>
-            <div className="hero-actions">
-              <Link className="btn btn-primary" href={pathFor(locale, "machines")}>
-                {tr ? "Çözümlerimizi İnceleyin" : "Explore Solutions"}
-              </Link>
-              <Link className="btn btn-dark" href={pathFor(locale, "contact")}>
-                {tr ? "Teklif Alın" : "Get a Quote"}
-              </Link>
-              <a className="btn btn-ghost" href={whatsappLink(locale)}>
-                WhatsApp
-              </a>
-              <SahibindenButton label={tr ? "Sahibinden Mağazamız" : "Sahibinden Store"} disabledLabel={tr ? "Yakında aktif" : "Coming soon"} />
-            </div>
-          </div>
-          <div className="hero-visual industrial-visual" aria-label={tr ? "Acertech endustriyel cozum tanitim gorseli" : "Acertech industrial solution visual"} />
+      <section className="home-gateway" aria-label={tr ? "Acertech ana hizmet girişleri" : "Acertech main service entries"}>
+        <div className="gateway-grid">
+          <HomeEntryPanel
+            href={pathFor(locale, "machines")}
+            image="/images/kapak0.png"
+            title={tr ? "Sıfır Makinalar" : "New Machinery"}
+            text={tr ? "Proje danışmanlık ve fabrika kurulumları" : "Project consulting and factory installations"}
+            action={tr ? "Sıfır makinaları incele" : "Explore new machinery"}
+            alt={tr ? "Acertech sıfır makina ve fabrika kurulumu tanıtım görseli" : "Acertech new machinery and factory installation visual"}
+          />
+          <HomeEntryPanel
+            href={pathFor(locale, "services")}
+            image="/images/kapakpro.png"
+            title={tr ? "Bakım, Servis ve Kurulum" : "Maintenance, Service and Installation"}
+            text={tr ? "Makina bakım, teknik servis, kurulum ve devreye alma" : "Machine maintenance, technical service, installation and commissioning"}
+            action={tr ? "Teknik servisi incele" : "Explore technical service"}
+            alt={tr ? "Acertech makina bakım ve teknik servis tanıtım görseli" : "Acertech machine maintenance and technical service visual"}
+            featured
+          />
+          <HomeEntryPanel
+            href={pathFor(locale, "used")}
+            image="/images/kapak2.png"
+            title={tr ? "İkinci El Makina" : "Used Machinery"}
+            text={tr ? "İkinci el makina alım, satım, ekspertiz ve kurulum çözümleri" : "Used machinery sourcing, sales, inspection and installation solutions"}
+            action={tr ? "İkinci eli incele" : "Explore used machinery"}
+            alt={tr ? "Acertech ikinci el makina tanıtım görseli" : "Acertech used machinery visual"}
+          />
         </div>
       </section>
       <section className="stats-band">
@@ -89,12 +97,46 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
       <section className="section">
         <div className="container">
-          <SectionTitle title={tr ? "Üç Ana Hizmet Alanı" : "Three Core Service Areas"} text={tr ? "Satış, servis ve mühendisliği aynı teknik yaklaşımda birleştiriyoruz." : "Sales, service and engineering are handled with one technical approach."} />
+          <SectionTitle
+            title={tr ? "Üç Ana Hizmet Alanı" : "Three Core Service Areas"}
+            text={tr ? "Sıfır makina, teknik servis ve ikinci el makina çözümlerini net bir akışta topluyoruz." : "New machinery, technical service and used machinery solutions are organized in one clear flow."}
+          />
           <ServiceCards locale={locale} />
         </div>
       </section>
       <SharedSections locale={locale} />
     </>
+  );
+}
+
+function HomeEntryPanel({
+  href,
+  image,
+  title,
+  text,
+  action,
+  alt,
+  featured = false
+}: {
+  href: string;
+  image: string;
+  title: string;
+  text: string;
+  action: string;
+  alt: string;
+  featured?: boolean;
+}) {
+  return (
+    <Link className={featured ? "gateway-panel gateway-panel-featured" : "gateway-panel"} href={href}>
+      <Image src={image} alt={alt} fill priority sizes="(max-width: 900px) 100vw, 33vw" />
+      <span className="gateway-shade" />
+      <span className="gateway-content">
+        <span className="gateway-kicker">ACERTECH</span>
+        <span className="gateway-title">{title}</span>
+        <span className="gateway-text">{text}</span>
+        <span className="gateway-action">{action}</span>
+      </span>
+    </Link>
   );
 }
 

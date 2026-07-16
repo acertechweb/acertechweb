@@ -4,10 +4,14 @@
 
 - Logo bulundu: `logo/acertech.png`
 - Projeye kopyalandı: `public/brand/acertech-logo.png`
+- Ana sayfa kapak görselleri bulundu ve kopyalandı:
+  - `public/images/kapak0.png`
+  - `public/images/kapakpro.png`
+  - `public/images/kapak2.png`
 
 ## Eksik
 
-Aşağıdaki kurumsal tanıtım görselleri çalışma alanında bulunamadı:
+Aşağıdaki standart adlandırılmış kurumsal tanıtım görselleri çalışma alanında bulunamadı:
 
 - `2.el.png` veya `second-hand.png`
 - `sıfır.png` veya `new-machines.png`
