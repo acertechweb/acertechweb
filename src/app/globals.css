@@ -444,8 +444,8 @@ img {
   min-height: inherit;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
+  justify-content: flex-end;
+  padding: clamp(1.4rem, 3vw, 2.4rem) clamp(1.2rem, 2.4vw, 2rem) 18vh;
   text-align: center;
 }
 
@@ -462,22 +462,22 @@ img {
 
 .gateway-title {
   display: block;
-  max-width: 520px;
+  max-width: 390px;
   margin-top: 1rem;
   color: white;
-  font-size: clamp(2.7rem, 5.6vw, 5.6rem);
+  font-size: clamp(2rem, 3.25vw, 3.45rem);
   font-weight: 950;
-  line-height: 0.9;
+  line-height: 0.96;
   letter-spacing: 0;
   text-transform: uppercase;
 }
 
 .gateway-text {
   display: block;
-  max-width: 260px;
+  max-width: 300px;
   margin-top: 0.9rem;
   color: rgba(255, 255, 255, 0.86);
-  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  font-size: clamp(0.82rem, 0.95vw, 0.95rem);
   font-weight: 700;
   line-height: 1.5;
 }
@@ -791,12 +791,20 @@ img {
   right: 1rem;
   bottom: 5.5rem;
   z-index: 70;
-  border-radius: 6px;
-  background: var(--anthracite);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  border-radius: 999px;
+  background: #25d366;
   color: white;
-  padding: 0.9rem 1rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+  padding: 0.78rem 1rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.24);
   font-weight: 900;
+}
+
+.floating-whatsapp svg {
+  flex: 0 0 auto;
 }
 
 .cookie-panel {
@@ -917,7 +925,11 @@ img {
   }
 
   .gateway-title {
-    font-size: clamp(2rem, 11vw, 3.1rem);
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+  }
+
+  .gateway-content {
+    padding-bottom: 3.2rem;
   }
 
   .footer-bottom {
@@ -928,6 +940,10 @@ img {
   .floating-whatsapp {
     right: 0.75rem;
     bottom: 5rem;
+  }
+
+  .floating-whatsapp span {
+    display: none;
   }
 }
 

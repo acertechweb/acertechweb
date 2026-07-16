@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { isLocale, locales } from "@/lib/site-config";
 import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
-import { CookieConsent } from "@/components/cookie-consent";
 import { organizationJsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -29,7 +28,6 @@ export default async function LocaleLayout({
       {children}
       <Footer locale={locale} />
       <WhatsAppButton locale={locale} />
-      <CookieConsent locale={locale} />
     </>
   );
 }
