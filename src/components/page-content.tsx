@@ -208,7 +208,10 @@ function SharedSections({ locale }: { locale: Locale }) {
   return (
     <>
       <section className="section">
-        <div className="container split-grid">
+        <div className="container work-model-grid">
+          <div className="work-model-image">
+            <Image src="/images/anasayfa-alti-acertech.png" alt={tr ? "AcerTech çalışma modeli" : "AcerTech working model"} fill sizes="(max-width: 900px) 100vw, 42vw" />
+          </div>
           <div>
             <SectionTitle title={tr ? "Proje ve Mühendislik Yaklaşımı" : "Project and Engineering Approach"} />
             <p>{tr ? "İhtiyaç analizi, teknik planlama, tekliflendirme, uygulama, devreye alma ve destek adımları aynı teknik bütünlük içinde yürütülür." : "Needs analysis, technical planning, quotation, execution, commissioning and support are handled as one technical workflow."}</p>
@@ -323,6 +326,9 @@ export function StandardPage({ locale, pageKey }: { locale: Locale; pageKey: Pag
                 <h2>{tr ? "Proje Hizmetleri" : "Project Services"}</h2>
                 <CategoryTags locale={locale} items={projectServices[locale]} />
                 <h2>{tr ? "Çalışma Modeli" : "Working Model"}</h2>
+                <div className="wide-inline-image">
+                  <Image src="/images/anasayfa-alti-acertech.png" alt={tr ? "AcerTech çalışma modeli" : "AcerTech working model"} fill sizes="(max-width: 760px) 100vw, 70vw" />
+                </div>
                 <p>{tr ? "İhtiyaç analizi → teknik planlama → tekliflendirme → uygulama → devreye alma ve destek." : "Needs analysis → technical planning → quotation → execution → commissioning and support."}</p>
               </>
             ) : null}
