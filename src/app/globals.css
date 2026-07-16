@@ -199,9 +199,35 @@ img {
 
 .topbar-inner {
   min-height: 38px;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 1.1rem;
   flex-wrap: wrap;
+}
+
+.topbar-contact,
+.exchange-rates {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.exchange-rates {
+  margin-left: auto;
+  gap: 0.45rem;
+  color: var(--anthracite);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.exchange-rates span {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  border: 1px solid rgba(37, 42, 46, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.74);
+  padding: 0.22rem 0.55rem;
 }
 
 .site-header {
@@ -232,6 +258,7 @@ img {
 }
 
 .site-header-home .lang,
+.site-header-home .lang-switch,
 .site-header-home .menu-button {
   border-color: rgba(255, 255, 255, 0.34);
   background: rgba(255, 255, 255, 0.08);
@@ -303,6 +330,24 @@ img {
   border-radius: 6px;
   padding: 0.62rem 0.75rem;
   font-weight: 900;
+}
+
+.lang-switch {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: white;
+  padding: 0.56rem 0.8rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.lang-switch .active {
+  color: var(--anthracite);
 }
 
 .menu-button {
@@ -874,7 +919,8 @@ img {
 
   .desktop-nav,
   .header-actions .btn,
-  .header-actions .lang {
+  .header-actions .lang,
+  .header-actions .lang-switch {
     display: none;
   }
 

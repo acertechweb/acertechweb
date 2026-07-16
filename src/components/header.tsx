@@ -43,6 +43,42 @@ const labels = {
 type NavKey = "home" | "machines" | "services" | "used" | "projects" | "industries" | "about" | "contact";
 const nav: NavKey[] = ["home", "machines", "services", "used", "projects", "industries", "about", "contact"];
 
+function ExchangeRates({ locale }: { locale: Locale }) {
+  const [rates, setRates] = useState<{ usdTry: number; eurTry: number } | null>(null);
+
+  useEffect(() => {
+    let active = true;
+
+    fetch("https://open.er-api.com/v6/latest/USD")
+      .then((response) => response.json())
+      .then((data) => {
+        const tryRate = Number(data?.rates?.TRY);
+        const eurRate = Number(data?.rates?.EUR);
+        if (!active || !tryRate || !eurRate) return;
+        setRates({ usdTry: tryRate, eurTry: tryRate / eurRate });
+      })
+      .catch(() => {
+        if (active) setRates(null);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const formatter = new Intl.NumberFormat(locale === "tr" ? "tr-TR" : "en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
+  return (
+    <div className="exchange-rates" aria-label={locale === "tr" ? "Güncel döviz kuru" : "Current exchange rates"}>
+      <span>$ {rates ? formatter.format(rates.usdTry) : "--"}</span>
+      <span>€ {rates ? formatter.format(rates.eurTry) : "--"}</span>
+    </div>
+  );
+}
+
 export function Header({ locale, pageKey }: { locale: Locale; pageKey: PageKey }) {
   const [open, setOpen] = useState(false);
   const t = labels[locale];
@@ -65,17 +101,14 @@ export function Header({ locale, pageKey }: { locale: Locale; pageKey: PageKey }
     <>
       <div className={isHome ? "topbar topbar-home" : "topbar"}>
         <div className="container topbar-inner">
-          <a href={siteConfig.phoneHref} onClick={() => trackEvent("phone_click", "topbar")}>
-            {siteConfig.phoneDisplay}
-          </a>
-          <a href={siteConfig.emailHref} onClick={() => trackEvent("email_click", "topbar")}>
-            {siteConfig.email}
-          </a>
-          <span>{siteConfig.location}</span>
-          <span>{siteConfig.hours[locale]}</span>
-          <a href={whatsappLink(locale)} onClick={() => trackEvent("whatsapp_click", "topbar")}>
-            WhatsApp
-          </a>
+          <div className="topbar-contact">
+            <a href={siteConfig.emailHref} onClick={() => trackEvent("email_click", "topbar")}>
+              {siteConfig.email}
+            </a>
+            <span>{siteConfig.location}</span>
+            <span>{siteConfig.hours[locale]}</span>
+          </div>
+          <ExchangeRates locale={locale} />
         </div>
       </div>
       <header className={isHome ? "site-header site-header-home" : "site-header"}>
@@ -91,11 +124,10 @@ export function Header({ locale, pageKey }: { locale: Locale; pageKey: PageKey }
             ))}
           </nav>
           <div className="header-actions">
-            <Link className="lang" href={pathFor(otherLocale, pageKey)}>
-              {otherLocale.toUpperCase()}
-            </Link>
-            <Link className="btn btn-primary" href={pathFor(locale, "contact")}>
-              {t.quote}
+            <Link className="lang-switch" href={pathFor(otherLocale, pageKey)} aria-label={locale === "tr" ? "Switch to English" : "Türkçeye geç"}>
+              <span className={locale === "tr" ? "active" : ""}>TR</span>
+              <span> / </span>
+              <span className={locale === "en" ? "active" : ""}>EN</span>
             </Link>
             <button className="menu-button" type="button" aria-expanded={open} onClick={() => setOpen(true)}>
               {t.menu}
