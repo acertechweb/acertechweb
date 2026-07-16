@@ -61,9 +61,9 @@ export function HomePage({ locale }: { locale: Locale }) {
           <HomeEntryPanel
             href={pathFor(locale, "machines")}
             image="/images/kapak0.png"
-            title={tr ? "Sıfır Makinalar" : "New Machinery"}
+            title={tr ? "Proje Danışmanlık Fabrika Kurulumu" : "Project Consulting Factory Installation"}
             text={tr ? "Proje danışmanlık ve fabrika kurulumları" : "Project consulting and factory installations"}
-            action={tr ? "Sıfır makinaları incele" : "Explore new machinery"}
+            action={tr ? "Projeleri incele" : "Explore projects"}
             alt={tr ? "Acertech sıfır makina ve fabrika kurulumu tanıtım görseli" : "Acertech new machinery and factory installation visual"}
           />
           <HomeEntryPanel
