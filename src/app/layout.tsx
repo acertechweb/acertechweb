@@ -13,6 +13,18 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: "ACERTECH",
   description: "Acertech Makine Sanayi ve Ticaret",
+  applicationName: "ACERTECH",
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/icon",
+    shortcut: "/icon",
+    apple: "/icon"
+  },
+  appleWebApp: {
+    capable: true,
+    title: "ACERTECH",
+    statusBarStyle: "black-translucent"
+  },
   verification: siteConfig.googleVerification ? { google: siteConfig.googleVerification } : undefined
 };
 

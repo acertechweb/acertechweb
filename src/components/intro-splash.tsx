@@ -27,7 +27,15 @@ export function IntroSplash() {
         width={1672}
         height={941}
         priority
-        className="intro-splash-image"
+        className="intro-splash-image intro-splash-desktop"
+      />
+      <Image
+        src="/images/girisacertech-mobile.png"
+        alt=""
+        width={1080}
+        height={1920}
+        priority
+        className="intro-splash-image intro-splash-mobile"
       />
     </div>
   );

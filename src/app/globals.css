@@ -431,6 +431,10 @@ img {
   object-position: center;
 }
 
+.intro-splash-mobile {
+  display: none;
+}
+
 .hero {
   padding: clamp(3rem, 8vw, 6rem) 0 3rem;
   background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
@@ -1211,11 +1215,16 @@ img {
   }
 
   .intro-splash {
-    background: #ffffff;
+    background: #090909;
   }
 
-  .intro-splash-image {
-    object-fit: contain;
+  .intro-splash-desktop {
+    display: none;
+  }
+
+  .intro-splash-mobile {
+    display: block;
+    object-fit: cover;
     object-position: center;
   }
 

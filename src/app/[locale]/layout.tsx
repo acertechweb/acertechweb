@@ -19,11 +19,12 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const jsonLd = organizationJsonLd(locale);
+  const skipLabel = locale === "tr" ? "İçeriğe geç" : "Skip to content";
 
   return (
     <>
       <a className="skip-link" href="#main">
-        Skip to content
+        {skipLabel}
       </a>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <IntroSplash />
