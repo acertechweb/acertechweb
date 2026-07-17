@@ -664,10 +664,11 @@ img {
   min-height: 190px;
   border-radius: 0;
   overflow: hidden;
+  background: #f7f7f7;
 }
 
 .service-image img {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .service-card .industrial-visual span {
@@ -764,13 +765,13 @@ img {
 .machine-card-image {
   position: relative;
   display: block;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: var(--light);
+  background: #f7f7f7;
 }
 
 .machine-card-image img {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .machine-card strong {
@@ -935,11 +936,11 @@ img {
   min-height: 250px;
   overflow: hidden;
   border-radius: 8px;
-  background: var(--light);
+  background: #f7f7f7;
 }
 
 .image-pair-item img {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .form-card {
