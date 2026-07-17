@@ -10,8 +10,8 @@ export function absoluteUrl(path: string) {
 
 const pageKeywords: Record<PageKey, Record<Locale, string[]>> = {
   home: {
-    tr: ["AcerTech", "endüstriyel makine", "makine teknolojileri", "teknik servis", "ikinci el makine"],
-    en: ["AcerTech", "industrial machinery", "machine technologies", "technical service", "used machinery"]
+    tr: ["AcerTech", "Fatih Acer", "Cavit Fatih Acer", "endüstriyel makine", "makine teknolojileri", "teknik servis", "ikinci el makine"],
+    en: ["AcerTech", "Fatih Acer", "Cavit Fatih Acer", "industrial machinery", "machine technologies", "technical service", "used machinery"]
   },
   machines: {
     tr: ["sanayi makineleri", "metal işleme makineleri", "CNC lazer kesim", "abkant pres", "giyotin makas"],
@@ -38,12 +38,12 @@ const pageKeywords: Record<PageKey, Record<Locale, string[]>> = {
     en: ["metalworking industry", "automotive supplier industry", "machine manufacturing", "sheet forming"]
   },
   about: {
-    tr: ["AcerTech hakkında", "Acertech Makine", "endüstriyel makine çözüm ortağı"],
-    en: ["about AcerTech", "Acertech Machinery", "industrial machinery partner"]
+    tr: ["Fatih Acer", "Cavit Fatih Acer", "AcerTech hakkında", "Acertech Makine", "endüstriyel makine çözüm ortağı"],
+    en: ["Fatih Acer", "Cavit Fatih Acer", "about AcerTech", "Acertech Machinery", "industrial machinery partner"]
   },
   contact: {
-    tr: ["AcerTech iletişim", "makine teklifi", "teknik servis talebi", "Adana makine"],
-    en: ["AcerTech contact", "machine quote", "technical service request", "Adana machinery"]
+    tr: ["Fatih Acer iletişim", "Cavit Fatih Acer", "AcerTech iletişim", "makine teklifi", "teknik servis talebi", "Adana makine"],
+    en: ["Fatih Acer contact", "Cavit Fatih Acer", "AcerTech contact", "machine quote", "technical service request", "Adana machinery"]
   },
   privacyNotice: { tr: ["KVKK", "kişisel veri"], en: ["privacy notice", "personal data"] },
   privacyPolicy: { tr: ["gizlilik politikası"], en: ["privacy policy"] },
@@ -65,11 +65,48 @@ export function pageImage(pageKey: PageKey) {
   return pageImages[pageKey] || siteConfig.ogImage;
 }
 
+function pageDescription(locale: Locale, pageKey: PageKey, fallback: string) {
+  if (pageKey === "about") {
+    return locale === "tr"
+      ? "Cavit Fatih Acer, Fatih Acer adıyla da bilinen AcerTech Makine Sanayi ve Ticaret kurucusu ve yetkilisidir."
+      : "Cavit Fatih Acer, also known as Fatih Acer, is the founder and authorized contact of AcerTech Makine Sanayi ve Ticaret.";
+  }
+
+  if (pageKey === "contact") {
+    return locale === "tr"
+      ? "Fatih Acer ile AcerTech Makine Sanayi ve Ticaret için makine, teknik servis, ikinci el ve proje danışmanlık taleplerinizde iletişime geçin."
+      : "Contact Fatih Acer for AcerTech Makine Sanayi ve Ticaret machinery, technical service, used machinery and project consulting requests.";
+  }
+
+  return fallback;
+}
+
+function personEntity() {
+  return { "@id": `${siteConfig.siteUrl}/#fatih-acer` };
+}
+
 export function pageMetadata(locale: Locale, pageKey: PageKey): Metadata {
   const copy = pageCopy[locale][pageKey];
   const path = pathFor(locale, pageKey);
   const other = locale === "tr" ? "en" : "tr";
-  const title = `${copy.title} | ACERTECH`;
+  const titlePrefix =
+    pageKey === "about"
+      ? locale === "tr"
+        ? "Fatih Acer ve AcerTech Hakkında"
+        : "Fatih Acer and About AcerTech"
+      : pageKey === "contact"
+        ? locale === "tr"
+          ? "Fatih Acer İletişim ve AcerTech"
+          : "Fatih Acer Contact and AcerTech"
+        : copy.title;
+  const fallbackDescription =
+    pageKey === "about"
+      ? locale === "tr"
+        ? "Cavit Fatih Acer, Fatih Acer adıyla da bilinen AcerTech Makine Sanayi ve Ticaret kurucusu ve yetkilisidir."
+        : "Cavit Fatih Acer, also known as Fatih Acer, is the founder and authorized contact of AcerTech Makine Sanayi ve Ticaret."
+      : copy.description;
+  const description = pageDescription(locale, pageKey, fallbackDescription);
+  const title = `${titlePrefix} | ACERTECH`;
   const image = pageImage(pageKey);
   const languages = {
     tr: absoluteUrl(pathFor("tr", pageKey)),
@@ -79,7 +116,7 @@ export function pageMetadata(locale: Locale, pageKey: PageKey): Metadata {
 
   return {
     title,
-    description: copy.description,
+    description,
     keywords: pageKeywords[pageKey][locale],
     authors: [{ name: siteConfig.company }],
     creator: siteConfig.company,
@@ -88,7 +125,7 @@ export function pageMetadata(locale: Locale, pageKey: PageKey): Metadata {
     alternates: { canonical: absoluteUrl(path), languages },
     openGraph: {
       title,
-      description: copy.description,
+      description,
       url: absoluteUrl(path),
       siteName: "ACERTECH",
       images: [{ url: absoluteUrl(image), width: 1200, height: 630, alt: title }],
@@ -99,7 +136,7 @@ export function pageMetadata(locale: Locale, pageKey: PageKey): Metadata {
     twitter: {
       card: "summary_large_image",
       title,
-      description: copy.description,
+      description,
       images: [absoluteUrl(image)]
     },
     robots: {
@@ -123,19 +160,24 @@ export function allPageEntries() {
 }
 
 export function organizationJsonLd(locale: Locale) {
+  const personId = `${siteConfig.siteUrl}/#fatih-acer`;
+  const organizationId = `${siteConfig.siteUrl}/#organization`;
+
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
-        "@id": `${siteConfig.siteUrl}/#organization`,
+        "@id": organizationId,
         name: siteConfig.company,
-        alternateName: siteConfig.brand,
+        alternateName: [siteConfig.brand, "AcerTech", "AcerTech Fatih Acer"],
         url: siteConfig.siteUrl,
         logo: absoluteUrl(siteConfig.logoBlack),
         image: absoluteUrl(siteConfig.logoBlack),
         email: siteConfig.email,
         telephone: siteConfig.phoneDisplay,
+        founder: { "@id": personId },
+        employee: { "@id": personId },
         address: {
           "@type": "PostalAddress",
           addressLocality: "Adana",
@@ -145,13 +187,40 @@ export function organizationJsonLd(locale: Locale) {
         foundingDate: siteConfig.foundationYear
       },
       {
+        "@type": "Person",
+        "@id": personId,
+        name: siteConfig.owner,
+        alternateName: ["Fatih Acer", "Cavit F. Acer"],
+        jobTitle: locale === "tr" ? "Kurucu ve Yetkili" : "Founder and Authorized Contact",
+        worksFor: { "@id": organizationId },
+        affiliation: { "@id": organizationId },
+        url: absoluteUrl(pathFor(locale, "about")),
+        email: siteConfig.email,
+        telephone: siteConfig.phoneDisplay,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Adana",
+          addressRegion: "Adana",
+          addressCountry: "TR"
+        },
+        knowsAbout: [
+          "Endüstriyel makine",
+          "Metal işleme makineleri",
+          "Teknik servis",
+          "İkinci el makine",
+          "Proje danışmanlık"
+        ]
+      },
+      {
         "@type": "ProfessionalService",
         "@id": `${siteConfig.siteUrl}/#service`,
         name: siteConfig.company,
+        alternateName: ["AcerTech", "AcerTech Fatih Acer"],
         url: siteConfig.siteUrl,
         image: absoluteUrl(siteConfig.logoBlack),
         telephone: siteConfig.phoneDisplay,
         email: siteConfig.email,
+        founder: { "@id": personId },
         areaServed: ["Türkiye", "International"],
         address: {
           "@type": "PostalAddress",
@@ -174,7 +243,7 @@ export function organizationJsonLd(locale: Locale) {
         "@id": `${siteConfig.siteUrl}/#website`,
         name: "ACERTECH",
         url: siteConfig.siteUrl,
-        publisher: { "@id": `${siteConfig.siteUrl}/#organization` },
+        publisher: { "@id": organizationId },
         inLanguage: locale
       }
     ]
@@ -186,6 +255,8 @@ export function pageJsonLd(locale: Locale, pageKey: PageKey) {
   const path = pathFor(locale, pageKey);
   const pageUrl = absoluteUrl(path);
   const homeLabel = locale === "tr" ? "Ana Sayfa" : "Home";
+  const description = pageDescription(locale, pageKey, copy.description);
+  const mainEntity = pageKey === "about" || pageKey === "contact" ? personEntity() : undefined;
 
   return {
     "@context": "https://schema.org",
@@ -195,10 +266,11 @@ export function pageJsonLd(locale: Locale, pageKey: PageKey) {
         "@id": `${pageUrl}#webpage`,
         url: pageUrl,
         name: copy.title,
-        description: copy.description,
+        description,
         inLanguage: locale,
         isPartOf: { "@id": `${siteConfig.siteUrl}/#website` },
         about: { "@id": `${siteConfig.siteUrl}/#organization` },
+        mainEntity,
         primaryImageOfPage: {
           "@type": "ImageObject",
           url: absoluteUrl(pageImage(pageKey))

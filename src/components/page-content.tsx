@@ -120,6 +120,11 @@ function ContactBlock({ locale }: { locale: Locale }) {
   const tr = locale === "tr";
   return (
     <div className="grid-auto">
+      <div className="contact-card card">
+        <strong>{tr ? "Yetkili" : "Contact Person"}</strong>
+        <span>{siteConfig.owner}</span>
+        <span>{tr ? "Fatih Acer olarak da bilinir" : "Also known as Fatih Acer"}</span>
+      </div>
       <a className="contact-card card" href={siteConfig.phoneHref}>
         <strong>{tr ? "Telefon" : "Phone"}</strong>
         <span>{siteConfig.phoneDisplay}</span>
@@ -366,6 +371,12 @@ function AboutDetails({ locale }: { locale: Locale }) {
   const tr = locale === "tr";
   return (
     <>
+      <h2>{tr ? "Cavit Fatih Acer" : "Cavit Fatih Acer"}</h2>
+      <p>
+        {tr
+          ? "AcerTech Makine Sanayi ve Ticaret'in kurucusu ve yetkilisi Cavit Fatih Acer'dir. Fatih Acer adıyla da bilinen Cavit Fatih Acer, endüstriyel makine, teknik servis, ikinci el makine ve proje danışmanlık süreçlerinde doğrudan iletişim kişisidir."
+          : "Cavit Fatih Acer is the founder and authorized contact of AcerTech Makine Sanayi ve Ticaret. Also known as Fatih Acer, he is the direct contact for industrial machinery, technical service, used machinery and project consulting workflows."}
+      </p>
       <h2>{tr ? "Yaklaşımımız" : "Our Approach"}</h2>
       <p>{tr ? "Ürün, malzeme, kapasite, çalışma alanı, enerji tüketimi, bakım ihtiyacı ve yatırım bütçesini birlikte değerlendiririz. Gereğinden düşük veya yüksek kapasitede yatırım yapılmasını önlemeye odaklanırız." : "We evaluate product, material, capacity, workspace, energy consumption, maintenance needs and investment budget together."}</p>
       <h2>{tr ? "Değerlerimiz" : "Values"}</h2>
