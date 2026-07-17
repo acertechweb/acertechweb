@@ -882,11 +882,11 @@ img {
   min-height: 280px;
   overflow: hidden;
   border-radius: 8px;
-  background: var(--anthracite);
+  background: #f7f7f7;
 }
 
 .page-hero-image img {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .page-grid {
