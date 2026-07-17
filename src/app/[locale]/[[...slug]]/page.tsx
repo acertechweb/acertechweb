@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { isLocale } from "@/lib/site-config";
-import { allPageEntries, pageMetadata } from "@/lib/seo";
+import { allPageEntries, pageJsonLd, pageMetadata } from "@/lib/seo";
 import { pageKeyFromSlug } from "@/i18n/routes";
 import { Header } from "@/components/header";
 import { HomePage, StandardPage } from "@/components/page-content";
@@ -28,10 +28,12 @@ export default async function LocalePage({ params }: { params: Promise<Params> }
   if (!isLocale(locale)) notFound();
   const pageKey = pageKeyFromSlug(locale, slug?.join("/"));
   if (!pageKey) notFound();
+  const jsonLd = pageJsonLd(locale, pageKey);
 
   return (
     <>
       <Header locale={locale} pageKey={pageKey} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <main id="main">{pageKey === "home" ? <HomePage locale={locale} /> : <StandardPage locale={locale} pageKey={pageKey} />}</main>
     </>
   );
