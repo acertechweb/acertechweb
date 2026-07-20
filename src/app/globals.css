@@ -501,12 +501,12 @@ img {
   border-right: 0;
 }
 
-.gateway-panel img {
+.gateway-panel > img {
   object-fit: cover;
   object-position: center;
-  transform: none;
+  transform: scale(1.12);
   filter: saturate(1.18) contrast(1.22) brightness(1.08);
-  transition: filter 220ms ease;
+  transition: filter 220ms ease, transform 220ms ease;
 }
 
 .gateway-panel:nth-child(1) > img {
@@ -521,8 +521,9 @@ img {
   object-position: 52% center;
 }
 
-.gateway-panel:hover img,
-.gateway-panel:focus-visible img {
+.gateway-panel:hover > img,
+.gateway-panel:focus-visible > img {
+  transform: scale(1.16);
   filter: saturate(1.22) contrast(1.26) brightness(1.11);
 }
 
