@@ -505,13 +505,25 @@ img {
   object-fit: cover;
   object-position: center;
   transform: none;
-  filter: saturate(1.14) contrast(1.16) brightness(1.04);
+  filter: saturate(1.18) contrast(1.22) brightness(1.08);
   transition: filter 220ms ease;
+}
+
+.gateway-panel:nth-child(1) > img {
+  object-position: 38% center;
+}
+
+.gateway-panel:nth-child(2) > img {
+  object-position: 50% center;
+}
+
+.gateway-panel:nth-child(3) > img {
+  object-position: 52% center;
 }
 
 .gateway-panel:hover img,
 .gateway-panel:focus-visible img {
-  filter: saturate(1.2) contrast(1.2) brightness(1.07);
+  filter: saturate(1.22) contrast(1.26) brightness(1.11);
 }
 
 .gateway-panel-featured {
@@ -523,54 +535,63 @@ img {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.44)),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.08));
+    linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.36)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.04));
 }
 
 .gateway-content {
   position: relative;
   z-index: 2;
-  display: flex;
+  display: grid;
   width: 100%;
   min-height: inherit;
-  flex-direction: column;
-  align-items: center;
+  grid-template-rows: 42px minmax(190px, auto) minmax(70px, auto) 48px;
+  align-content: center;
+  justify-items: center;
   justify-content: center;
   padding: 14vh clamp(1.2rem, 2.4vw, 2rem) 8vh;
   text-align: center;
 }
 
 .gateway-kicker {
-  width: fit-content;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  padding: 0.28rem 0.6rem;
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 0.66rem;
-  font-weight: 900;
-  letter-spacing: 0;
-  text-transform: uppercase;
+  display: inline-flex;
+  width: 128px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.14);
+  padding: 0.32rem 0.6rem;
+}
+
+.gateway-kicker img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.45));
 }
 
 .gateway-title {
   display: flex;
-  min-height: 3.9em;
+  min-height: 190px;
   align-items: center;
   justify-content: center;
   max-width: 390px;
-  margin-top: 1rem;
+  margin-top: 0.4rem;
   color: white;
   font-size: clamp(2rem, 3.25vw, 3.45rem);
   font-weight: 950;
   line-height: 0.96;
   letter-spacing: 0;
   text-transform: uppercase;
+  white-space: pre-line;
   text-shadow: 0 3px 18px rgba(0, 0, 0, 0.45);
 }
 
 .gateway-text {
   display: block;
   max-width: 300px;
-  margin-top: 0.9rem;
+  margin-top: 0;
   color: rgba(255, 255, 255, 0.94);
   font-size: clamp(0.82rem, 0.95vw, 0.95rem);
   font-weight: 850;
@@ -583,7 +604,7 @@ img {
   width: fit-content;
   min-height: 44px;
   align-items: center;
-  margin-top: 1.25rem;
+  margin-top: 0.9rem;
   border: 1px solid rgba(242, 106, 33, 0.72);
   border-radius: 0;
   background: rgba(242, 106, 33, 0.12);
@@ -633,6 +654,22 @@ img {
   margin-bottom: 1.7rem;
 }
 
+.section-logo-mark,
+.page-logo-mark {
+  display: block;
+  width: min(148px, 42vw);
+  height: auto;
+  object-fit: contain;
+}
+
+.section-logo-mark {
+  margin-bottom: 0.7rem;
+}
+
+.page-logo-mark {
+  margin-bottom: 1rem;
+}
+
 .section-title h2,
 .section-heading h2,
 .cta h2,
@@ -668,7 +705,12 @@ img {
 }
 
 .service-image img {
+  inset: 8px !important;
+  width: calc(100% - 16px) !important;
+  height: calc(100% - 16px) !important;
   object-fit: contain;
+  object-position: center;
+  filter: saturate(1.1) contrast(1.1) brightness(1.02);
 }
 
 .service-card .industrial-visual span {
@@ -767,11 +809,16 @@ img {
   display: block;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #f7f7f7;
+  background: #f3f3f3;
 }
 
 .machine-card-image img {
+  inset: 10px !important;
+  width: calc(100% - 20px) !important;
+  height: calc(100% - 20px) !important;
   object-fit: contain;
+  object-position: center;
+  filter: saturate(1.12) contrast(1.12) brightness(1.03);
 }
 
 .machine-card strong {
@@ -816,7 +863,12 @@ img {
 
 .work-model-image img,
 .wide-inline-image img {
+  inset: 8px !important;
+  width: calc(100% - 16px) !important;
+  height: calc(100% - 16px) !important;
   object-fit: contain;
+  object-position: center;
+  filter: saturate(1.08) contrast(1.08) brightness(1.02);
 }
 
 .steps {
@@ -887,6 +939,7 @@ img {
 
 .page-hero-image img {
   object-fit: contain;
+  filter: saturate(1.1) contrast(1.1) brightness(1.02);
 }
 
 .page-grid {
@@ -940,7 +993,12 @@ img {
 }
 
 .image-pair-item img {
+  inset: 8px !important;
+  width: calc(100% - 16px) !important;
+  height: calc(100% - 16px) !important;
   object-fit: contain;
+  object-position: center;
+  filter: saturate(1.08) contrast(1.08) brightness(1.02);
 }
 
 .form-card {
@@ -1154,7 +1212,7 @@ img {
 
   .gateway-panel,
   .gateway-panel-featured {
-    min-height: 430px;
+    min-height: 460px;
     border-right: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   }
@@ -1202,17 +1260,36 @@ img {
 
   .gateway-panel,
   .gateway-panel-featured {
-    min-height: 360px;
+    min-height: 390px;
   }
 
   .gateway-title {
-    font-size: clamp(1.8rem, 8vw, 2.6rem);
-    min-height: auto;
+    min-height: 132px;
+    font-size: clamp(1.85rem, 8.6vw, 2.65rem);
   }
 
   .gateway-content {
-    justify-content: flex-end;
-    padding: 5rem 1.2rem 3.2rem;
+    grid-template-rows: 34px minmax(126px, auto) minmax(58px, auto) 46px;
+    align-content: center;
+    padding: 3.8rem 1.2rem 2.5rem;
+  }
+
+  .gateway-kicker {
+    width: 112px;
+    height: 30px;
+    padding: 0.26rem 0.5rem;
+  }
+
+  .gateway-text {
+    max-width: 310px;
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .gateway-action {
+    opacity: 1;
+    transform: none;
+    background: rgba(242, 106, 33, 0.92);
   }
 
   .intro-splash {
@@ -1225,7 +1302,7 @@ img {
 
   .intro-splash-mobile {
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
   }
 

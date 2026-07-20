@@ -31,7 +31,7 @@ function slugify(value: string) {
 function SectionTitle({ title, text }: { title: string; text?: string }) {
   return (
     <div className="section-title">
-      <span className="eyebrow">ACERTECH</span>
+      <Image className="section-logo-mark" src={siteConfig.logoBlack} alt="ACERTECH" width={132} height={34} />
       <h2>{title}</h2>
       {text ? <p>{text}</p> : null}
     </div>
@@ -60,7 +60,9 @@ function HomeEntryPanel({
       <Image src={image} alt={alt} fill priority sizes="(max-width: 900px) 100vw, 33vw" />
       <span className="gateway-shade" />
       <span className="gateway-content">
-        <span className="gateway-kicker">ACERTECH</span>
+        <span className="gateway-kicker">
+          <Image src={siteConfig.logoWhite} alt="ACERTECH" width={118} height={30} />
+        </span>
         <span className="gateway-title">{title}</span>
         <span className="gateway-text">{text}</span>
         <span className="gateway-action">{action}</span>
@@ -155,7 +157,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           <HomeEntryPanel
             href={pathFor(locale, "projects")}
             image="/images/kapak0.png"
-            title={tr ? "Proje Danışmanlık Fabrika Kurulumu" : "Project Consulting Factory Installation"}
+            title={tr ? "MAKİNA\nOTOMASYON\nTEKNOLOJİ\nPROJE VE DANIŞMANLIK" : "MACHINE\nAUTOMATION\nTECHNOLOGY\nPROJECT AND CONSULTING"}
             text={tr ? "Yeni yatırım, kapasite artırımı ve üretim hattı geliştirme desteği" : "New investment, capacity increase and production line support"}
             action={tr ? "Projeleri incele" : "Explore projects"}
             alt={tr ? "AcerTech proje danışmanlık ve fabrika kurulumu" : "AcerTech project consulting and factory installation"}
@@ -273,7 +275,7 @@ export function StandardPage({ locale, pageKey }: { locale: Locale; pageKey: Pag
       <section className="page-hero">
         <div className={image ? "container page-hero-grid" : "container"}>
           <div>
-            <p className="eyebrow">ACERTECH</p>
+            <Image className="page-logo-mark" src={siteConfig.logoBlack} alt="ACERTECH" width={148} height={38} />
             <h1>{copy.title}</h1>
             <p>{copy.description}</p>
           </div>
